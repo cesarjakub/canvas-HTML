@@ -1,4 +1,5 @@
-const ctx = document.getElementById("canvas").getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 let barva = document.querySelector(".color");
 let tuzka = document.querySelector(".tenkaTuzka");
 let stetec = document.querySelector(".tlustaTuzka");
@@ -9,7 +10,6 @@ let nastroj = tuzka;
 
 document.addEventListener("mousedown", start);
 document.addEventListener("mouseup", stop);
-
 
 function getMouseCord(event) {
   x = event.clientX - canvas.offsetLeft;
@@ -33,22 +33,38 @@ function draw(event) {
   ctx.stroke();
 }
 
-function changeBrush(){
-    switch(nastroj){
-        case tuzka:
-            return 5;
-        case stetec:
-            return 25;
-    }
+function changeBrush() {
+  switch (nastroj) {
+    case tuzka:
+      return 5;
+    case stetec:
+      return 25;
+  }
 }
-tuzka.addEventListener("click", () =>{
-    nastroj = tuzka;
+tuzka.addEventListener("click", () => {
+  nastroj = tuzka;
 });
-stetec.addEventListener("click", () =>{
-    nastroj = stetec;
+stetec.addEventListener("click", () => {
+  nastroj = stetec;
 });
 
-function reset(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function reset() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 vymazat.addEventListener("click", reset);
+
+function save() {
+  localStorage.setItem(canvas, canvas.toDataURL());
+}
+
+function load() {
+  var maluvky = localStorage.getItem(canvas);
+  var img = new Image();
+  img.src = maluvky;
+  img.onload = function () {
+    ctx.drawImage(img, 0, 0);
+  };
+}
+
+let saveImg = document.querySelector(".save").addEventListener("click", save);
+let loadImg = document.querySelector(".load").addEventListener("click", load);
