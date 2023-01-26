@@ -5,6 +5,7 @@ let stetec = document.querySelector(".tlustaTuzka");
 let vymazat = document.querySelector(".vymazat");
 let x = 0;
 let y = 0;
+let nastroj = tuzka;
 
 document.addEventListener("mousedown", start);
 document.addEventListener("mouseup", stop);
@@ -23,7 +24,8 @@ function stop() {
 }
 function draw(event) {
   ctx.beginPath();
-  ctx.lineWidth = 3;
+  ctx.lineCap = "round";
+  ctx.lineWidth = changeBrush();
   ctx.strokeStyle = barva.value;
   ctx.moveTo(x, y);
   souradnice(event);
@@ -31,18 +33,20 @@ function draw(event) {
   ctx.stroke();
 }
 
-function changeBrush(i){
-    switch(i){
-        case 1:
-            ctx.lineWidth = 15;
-            break;
-        case 2:
-            ctx.lineWidth = 3;
-            break;
+function changeBrush(){
+    switch(nastroj){
+        case tuzka:
+            return 5;
+        case stetec:
+            return 25;
     }
 }
-tuzka.addEventListener("click", changeBrush(2));
-stetec.addEventListener("click", changeBrush(1));
+tuzka.addEventListener("click", () =>{
+    nastroj = tuzka;
+});
+stetec.addEventListener("click", () =>{
+    nastroj = stetec;
+});
 
 function reset(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
