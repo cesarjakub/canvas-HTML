@@ -11,13 +11,13 @@ document.addEventListener("mousedown", start);
 document.addEventListener("mouseup", stop);
 
 
-function souradnice(event) {
+function getMouseCord(event) {
   x = event.clientX - canvas.offsetLeft;
   y = event.clientY - canvas.offsetTop;
 }
 function start(event) {
   document.addEventListener("mousemove", draw);
-  souradnice(event);
+  getMouseCord(event);
 }
 function stop() {
   document.removeEventListener("mousemove", draw);
@@ -28,7 +28,7 @@ function draw(event) {
   ctx.lineWidth = changeBrush();
   ctx.strokeStyle = barva.value;
   ctx.moveTo(x, y);
-  souradnice(event);
+  getMouseCord(event);
   ctx.lineTo(x, y);
   ctx.stroke();
 }
