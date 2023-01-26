@@ -3,7 +3,7 @@
 <head>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="./script.js" defer></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,13 @@
     <title>Canvas</title>
 </head>
 <body>
+    <div class="nastroje">
+        <button class="tuzka">tužka</button>
+        <button class="stetec">štětec</button>
+        <button class="vymazat">vymazat</button>
+        <p class="label">Barva:</p>
+        <input type="color" value="black" class="color">
+    </div>
     <div class="container">
         <canvas class="canvas" id="canvas" width="1000" height="550">
 

@@ -8,9 +8,39 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 5%;
+    margin: 60px;
 }
 
 .canvas{
     border: black solid 2px;
+}
+
+.nastroje{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+}
+
+button{
+    margin: 5px;
+    padding: 15px;
+    border: black solid 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}
+
+input[type="color"]{
+    margin: 15px;
+    border: black solid 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.label{
+    margin: 17px;
 }
