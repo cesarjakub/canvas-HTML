@@ -4,6 +4,7 @@ let barva = document.querySelector(".color");
 let tuzka = document.querySelector(".tenkaTuzka");
 let stetec = document.querySelector(".tlustaTuzka");
 let vymazat = document.querySelector(".vymazat");
+let airbrush = document.querySelector(".airbrush");
 let x = 0;
 let y = 0;
 let nastroj = tuzka;
@@ -15,6 +16,7 @@ function getMouseCord(event) {
   x = event.clientX - canvas.offsetLeft;
   y = event.clientY - canvas.offsetTop;
 }
+
 function start(event) {
   document.addEventListener("mousemove", draw);
   getMouseCord(event);
@@ -46,6 +48,9 @@ tuzka.addEventListener("click", () => {
 });
 stetec.addEventListener("click", () => {
   nastroj = stetec;
+});
+airbrush.addEventListener("click", () => {
+  nastroj = airbrush;
 });
 
 function reset() {
