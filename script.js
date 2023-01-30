@@ -57,10 +57,9 @@ function save() {
   localStorage.setItem(canvas, canvas.toDataURL());
 }
 
-function load() {
-  var maluvky = localStorage.getItem(canvas);
-  var img = new Image();
-  img.src = maluvky;
+function load() { 
+  let img = new Image();
+  img.src = localStorage.getItem(canvas);
   img.onload = function () {
     ctx.drawImage(img, 0, 0);
   };
