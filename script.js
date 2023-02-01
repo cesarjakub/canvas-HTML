@@ -8,19 +8,15 @@ let x = 0;
 let y = 0;
 let nastroj = tuzka;
 
-document.addEventListener("mousedown", start);
-document.addEventListener("mouseup", stop);
+document.addEventListener("mousedown", zacitKreslit);
+document.addEventListener("mouseup", prestatKreslit);
 
-function getMouseCord(event) {
+function zacitKreslit(event) {
+  document.addEventListener("mousemove", draw);
   x = event.clientX - canvas.offsetLeft;
   y = event.clientY - canvas.offsetTop;
 }
-
-function start(event) {
-  document.addEventListener("mousemove", draw);
-  getMouseCord(event);
-}
-function stop() {
+function prestatKreslit() {
   document.removeEventListener("mousemove", draw);
 }
 function draw(event) {
@@ -29,7 +25,8 @@ function draw(event) {
   ctx.lineWidth = changeBrush();
   ctx.strokeStyle = barva.value;
   ctx.moveTo(x, y);
-  getMouseCord(event);
+  x = event.clientX - canvas.offsetLeft;
+  y = event.clientY - canvas.offsetTop;
   ctx.lineTo(x, y);
   ctx.stroke();
 }
@@ -59,8 +56,9 @@ function save() {
 }
 
 function load() { 
+  let src = localStorage.getItem(canvas);
   let img = new Image();
-  img.src = localStorage.getItem(canvas);
+  img.src = src;
   img.onload = function () {
     ctx.drawImage(img, 0, 0);
   };
