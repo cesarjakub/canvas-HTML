@@ -46,3 +46,17 @@ input[type="color"]{
 .label{
     margin: 17px;
 }
+
+input[type="number"]{
+    margin: 5px;
+    width: 50px;
+    border: black solid 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.bezkriv .x .Y{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

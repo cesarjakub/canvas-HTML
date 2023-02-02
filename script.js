@@ -5,16 +5,10 @@ let tuzka = document.querySelector(".tenkaTuzka");
 let stetec = document.querySelector(".tlustaTuzka");
 let vymazat = document.querySelector(".vymazat");
 let krivka = document.querySelector(".krivka");
+
 let x = 0;
 let y = 0;
 let nastroj = tuzka;
-
-
-
-
-
-
-
 
 document.addEventListener("mousedown", zacitKreslit);
 document.addEventListener("mouseup", prestatKreslit);
@@ -43,16 +37,7 @@ function draw(event) {
   ctx.stroke();
 }
 
-function bezierCurve(event){
-  let start = { x: 345,   y: 50};
-  let cp1 =   { x: 230,   y: 30  };
-  let cp2 =   { x: 150,   y: 80  };
-  let end =   { x: 250,   y: 100 };
-
-
-  
-
-
+/*function bezierCurve(event){
   ctx.fillStyle = barva.value;
   ctx.lineCap = "round";
   ctx.lineWidth = 5;
@@ -73,17 +58,42 @@ function bezierCurve(event){
   ctx.arc(cp1.x, cp1.y, 5, 0, 2 * Math.PI);  
   ctx.arc(cp2.x, cp2.y, 5, 0, 2 * Math.PI);  
   ctx.fill();
-
 }
 krivka.addEventListener("click", bezierCurve);
+*/
 
+function bezCurv(){
+  let sx = document.querySelector(".startx").value;
+  let sy = document.querySelector(".starty").value;
+  let ex = document.querySelector(".endx").value;
+  let ey = document.querySelector(".endy").value;
+  let cp1x = document.querySelector(".cp1x").value;
+  let cp1y = document.querySelector(".cp1y").value;
+  let cp2x = document.querySelector(".cp2x").value;
+  let cp2y = document.querySelector(".cp2y").value;
 
+  ctx.fillStyle = barva.value;
+  ctx.lineCap = "round";
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.moveTo(sx,sy);
+  ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, ex, ey);
+  ctx.stroke();
 
+  ctx.fillStyle = 'blue';
+  ctx.beginPath();
+  ctx.arc(sx, sy, 5, 0, 2 * Math.PI);  
+  ctx.arc(ex, ey, 5, 0, 2 * Math.PI);      
+  ctx.fill();
+  
+  ctx.fillStyle = 'red';
+  ctx.beginPath();
+  ctx.arc(cp1x, cp1y, 5, 0, 2 * Math.PI);  
+  ctx.arc(cp2x, cp2y, 5, 0, 2 * Math.PI);  
+  ctx.fill();
 
-
-
-
-
+}
+krivka.addEventListener("click", bezCurv);
 
 function changeBrush() {
   switch (nastroj) {

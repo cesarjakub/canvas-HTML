@@ -14,12 +14,35 @@
     <div class="nastroje">
         <button class="tenkaTuzka">tužka</button>
         <button class="tlustaTuzka">štětec</button>
-        <button class="krivka">křivka</button>
         <button class="vymazat">vymazat</button>
         <button class="save">save</button>
         <button class="load">load</button>
         <p class="label">Barva:</p>
         <input type="color" value="#000000" class="color">
+        <button class="krivka">křivka</button>
+        <div class="bezkriv">
+            <div class="x">
+                <label for="startnum" class="label">Start point x:</label>
+                <input type="number" id="startnum" name="startnum" class="startx">
+                <label for="endnum" class="label">End point x:</label>
+                <input type="number" id="endnum" name="endnum" class="endx">
+                <label for="cp1num" class="label">CP1 point x:</label>
+                <input type="number" id="cp1num" name="cp1num" class="cp1x">
+                <label for="cp2num" class="label">CP2 point x:</label>
+                <input type="number" id="cp2num" name="cp2num" class="cp2x">
+            </div>  
+
+            <div class="y">
+                <label for="startnum" class="label">Start point y:</label>
+                <input type="number" id="startnum" name="startnum" class="starty">
+                <label for="endnum" class="label">End point y:</label>
+                <input type="number" id="endnum" name="endnum" class="endy">
+                <label for="cp1num" class="label">CP1 point y:</label>
+                <input type="number" id="cp1num" name="cp1num" class="cp1y">
+                <label for="cp2num" class="label">CP2 point y:</label>
+                <input type="number" id="cp2num" name="cp2num" class="cp2y">
+            </div>
+        </div>
     </div>
     <div class="container">
         <canvas class="canvas" id="canvas" width="1000" height="550">
