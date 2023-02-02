@@ -4,30 +4,33 @@ let barva = document.querySelector(".color");
 let tuzka = document.querySelector(".tenkaTuzka");
 let stetec = document.querySelector(".tlustaTuzka");
 let vymazat = document.querySelector(".vymazat");
-let obdel = document.querySelector(".obdelnik");
+let krivka = document.querySelector(".krivka");
 let x = 0;
 let y = 0;
 let nastroj = tuzka;
-let ob = false;
+
+
+
+
+
+
+
 
 document.addEventListener("mousedown", zacitKreslit);
 document.addEventListener("mouseup", prestatKreslit);
 
+function getMouseCords(event){
+  x = event.clientX - canvas.offsetLeft;
+  y = event.clientY - canvas.offsetTop;
+}
+
 function zacitKreslit(event) {
-  if(!ob){
-    document.addEventListener("mousemove", draw);
-    x = event.clientX - canvas.offsetLeft;
-    y = event.clientY - canvas.offsetTop;
-  }else{
-    document.addEventListener("mousemove", obdelnik);
-    x = event.clientX - canvas.offsetLeft;
-    y = event.clientY - canvas.offsetTop;
-  }
-  
+  document.addEventListener("mousemove", draw);
+  getMouseCords(event);
 }
 function prestatKreslit() {
   document.removeEventListener("mousemove", draw);
-  document.removeEventListener("mousemove", obdelnik);
+  document.removeEventListener("mousemove", bezierCurve);
 }
 function draw(event) {
   ctx.beginPath();
@@ -35,23 +38,52 @@ function draw(event) {
   ctx.lineWidth = changeBrush();
   ctx.strokeStyle = barva.value;
   ctx.moveTo(x, y);
-  x = event.clientX - canvas.offsetLeft;
-  y = event.clientY - canvas.offsetTop;
+  getMouseCords(event);
   ctx.lineTo(x, y);
   ctx.stroke();
 }
 
-function obdelnik(event){
-  ctx.beginPath();
+function bezierCurve(event){
+  let start = { x: 345,   y: 50};
+  let cp1 =   { x: 230,   y: 30  };
+  let cp2 =   { x: 150,   y: 80  };
+  let end =   { x: 250,   y: 100 };
+
+
+  
+
+
+  ctx.fillStyle = barva.value;
   ctx.lineCap = "round";
   ctx.lineWidth = 5;
-  ctx.strokeStyle = barva.value;
-  ctx.rect(x,y,100,50);
+  ctx.beginPath();
+  ctx.moveTo(start.x,start.y);
+  getMouseCords(event)
+  ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, end.x, end.y);
   ctx.stroke();
+
+  ctx.fillStyle = 'blue';
+  ctx.beginPath();
+  ctx.arc(start.x, start.y, 5, 0, 2 * Math.PI);  
+  ctx.arc(end.x, end.y, 5, 0, 2 * Math.PI);      
+  ctx.fill();
+  
+  ctx.fillStyle = 'red';
+  ctx.beginPath();
+  ctx.arc(cp1.x, cp1.y, 5, 0, 2 * Math.PI);  
+  ctx.arc(cp2.x, cp2.y, 5, 0, 2 * Math.PI);  
+  ctx.fill();
+
 }
-obdel.addEventListener("click", () => {
-  ob = true;
-});
+krivka.addEventListener("click", bezierCurve);
+
+
+
+
+
+
+
+
 
 function changeBrush() {
   switch (nastroj) {
@@ -63,11 +95,9 @@ function changeBrush() {
 }
 tuzka.addEventListener("click", () => {
   nastroj = tuzka;
-  ob = false;
 });
 stetec.addEventListener("click", () => {
   nastroj = stetec;
-  ob = false;
 });
 
 function reset() {
