@@ -24,7 +24,6 @@ function zacitKreslit(event) {
 }
 function prestatKreslit() {
   document.removeEventListener("mousemove", draw);
-  document.removeEventListener("mousemove", bezierCurve);
 }
 function draw(event) {
   ctx.beginPath();
@@ -36,31 +35,6 @@ function draw(event) {
   ctx.lineTo(x, y);
   ctx.stroke();
 }
-
-/*function bezierCurve(event){
-  ctx.fillStyle = barva.value;
-  ctx.lineCap = "round";
-  ctx.lineWidth = 5;
-  ctx.beginPath();
-  ctx.moveTo(start.x,start.y);
-  getMouseCords(event)
-  ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, end.x, end.y);
-  ctx.stroke();
-
-  ctx.fillStyle = 'blue';
-  ctx.beginPath();
-  ctx.arc(start.x, start.y, 5, 0, 2 * Math.PI);  
-  ctx.arc(end.x, end.y, 5, 0, 2 * Math.PI);      
-  ctx.fill();
-  
-  ctx.fillStyle = 'red';
-  ctx.beginPath();
-  ctx.arc(cp1.x, cp1.y, 5, 0, 2 * Math.PI);  
-  ctx.arc(cp2.x, cp2.y, 5, 0, 2 * Math.PI);  
-  ctx.fill();
-}
-krivka.addEventListener("click", bezierCurve);
-*/
 
 function bezCurv(){
   let sx = document.querySelector(".startx").value;
@@ -79,18 +53,6 @@ function bezCurv(){
   ctx.moveTo(sx,sy);
   ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, ex, ey);
   ctx.stroke();
-
-  ctx.fillStyle = 'blue';
-  ctx.beginPath();
-  ctx.arc(sx, sy, 5, 0, 2 * Math.PI);  
-  ctx.arc(ex, ey, 5, 0, 2 * Math.PI);      
-  ctx.fill();
-  
-  ctx.fillStyle = 'red';
-  ctx.beginPath();
-  ctx.arc(cp1x, cp1y, 5, 0, 2 * Math.PI);  
-  ctx.arc(cp2x, cp2y, 5, 0, 2 * Math.PI);  
-  ctx.fill();
 
 }
 krivka.addEventListener("click", bezCurv);
